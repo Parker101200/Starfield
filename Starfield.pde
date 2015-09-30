@@ -1,15 +1,44 @@
-//your code here
+NormalParticle [] bob;//your code here
 public void setup()
 {
-	//your code here
+	size(400,400);
+	bob = new NormalParticle [1000];
+	for(int i = 0; i < bob.length; i++)
+	{
+		bob[i] = new NormalParticle(200, 200);
+	}
 }
 public void draw()
 {
-	//your code here
+	background(0);
+	for(int i = 0; i < bob.length; i++)
+	{
+		bob[i].move();
+		bob[i].show(); 
+	}
 }
 class NormalParticle
 {
-	//your code here
+	int c = color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+	double x, y, speed, angle;
+	NormalParticle(int x, int y)
+	{
+		x = x;
+		y = y;
+		speed = (double)(Math.random()*1);
+		angle = (double)(Math.random()*7);
+	}
+	void move()
+	{
+		x = x + Math.cos(angle) * speed;
+		y = y + Math.sin(angle) * speed;
+	}
+	void show()
+	{
+		fill(c);
+		noStroke();
+		ellipse((float)x+200, (float)y+200, 5, 5);
+	}
 }
 interface Particle
 {
