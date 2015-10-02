@@ -1,11 +1,17 @@
-NormalParticle [] bob;//your code here
+Particle [] bob;
+Particle [] tod;
 public void setup()
 {
 	size(400,400);
 	bob = new NormalParticle [1000];
+	tod = new OddballParticle[1];
 	for(int i = 0; i < bob.length; i++)
 	{
 		bob[i] = new NormalParticle(200, 200);
+	}
+	for(int i = 0; i < tod.length; i++)
+	{
+		tod[i] = new OddballParticle(200, 200);
 	}
 }
 public void draw()
@@ -16,11 +22,15 @@ public void draw()
 		bob[i].move();
 		bob[i].show(); 
 	}
+	for(int i = 0; i < tod.length; i++)
+	{
+		tod[i].show();
+		tod[i].move();
+	}
 }
 class NormalParticle implements Particle
 {
 	int c = color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
-	int c2 = color(255,255,255);
 	double x, y, speed, angle;
 	NormalParticle(int x, int y)
 	{
@@ -48,6 +58,14 @@ interface Particle
 }
 class OddballParticle implements Particle //uses an interface
 {
+	double x, y, speed, angle;
+	OddballParticle(int x, int y)
+	{
+		x = x;
+		y = y;
+		speed = (double)(Math.random()*0.5);
+		angle = (double)(Math.random()*6.5);
+	}
 	public void move()
 	{
 		x = x + Math.cos(angle) * speed;
@@ -55,7 +73,8 @@ class OddballParticle implements Particle //uses an interface
 	}
 	public void show()
 	{
-		
+		fill(255,255,255);
+		ellipse((float)x+200, (float)y+200, 10, 10);
 	}
 }
 class JumboParticle //uses inheritance
