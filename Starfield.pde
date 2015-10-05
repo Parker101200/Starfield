@@ -1,31 +1,26 @@
-Particle [] bob;
-Particle [] tod;
+Particle [] star;
+interface Particle
+{
+	public void show();
+	public void move();
+}
 public void setup()
 {
 	size(400,400);
-	bob = new NormalParticle [1000];
-	tod = new OddballParticle[1];
-	for(int i = 0; i < bob.length; i++)
+	star = new Particle[1000];
+	for(int i = 0; i < 999; i++)
 	{
-		bob[i] = new NormalParticle(200, 200);
-	}
-	for(int i = 0; i < tod.length; i++)
-	{
-		tod[i] = new OddballParticle(200, 200);
+		star[i] = new NormalParticle(200,200);
+		star[999] = new OddballParticle(200,200);
 	}
 }
 public void draw()
 {
 	background(0);
-	for(int i = 0; i < bob.length; i++)
+	for(int i = 0; i < star.length; i++)
 	{
-		bob[i].move();
-		bob[i].show(); 
-	}
-	for(int i = 0; i < tod.length; i++)
-	{
-		tod[i].show();
-		tod[i].move();
+		star[i].move();
+		star[i].show(); 
 	}
 }
 class NormalParticle implements Particle
@@ -48,13 +43,8 @@ class NormalParticle implements Particle
 	{
 		fill(c);
 		noStroke();
-		ellipse((float)x+200, (float)y+200, 2, 2);
+		ellipse((float)x+200, (float)y+200, 2.5, 2.5);
 	}
-}
-interface Particle
-{
-	public void show();
-	public void move();
 }
 class OddballParticle implements Particle //uses an interface
 {
@@ -63,7 +53,7 @@ class OddballParticle implements Particle //uses an interface
 	{
 		x = x;
 		y = y;
-		speed = (double)(Math.random()*0.5);
+		speed = 0.2;
 		angle = (double)(Math.random()*6.5);
 	}
 	public void move()
