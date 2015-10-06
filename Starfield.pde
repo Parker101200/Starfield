@@ -7,11 +7,11 @@ interface Particle
 public void setup()
 {
 	size(400,400);
-	star = new Particle[1000];
-	for(int i = 0; i < 999; i++)
+	star = new Particle[5000];
+	for(int i = 0; i < 4999; i++)
 	{
 		star[i] = new NormalParticle(200,200);
-		star[999] = new OddballParticle(200,200);
+		star[4999] = new OddballParticle(200,200);
 	}
 }
 public void draw()
@@ -25,7 +25,7 @@ public void draw()
 }
 class NormalParticle implements Particle
 {
-	int c = color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
+	int c = color((int)(Math.random()*255));
 	double x, y, speed, angle;
 	NormalParticle(int x, int y)
 	{
@@ -63,12 +63,18 @@ class OddballParticle implements Particle //uses an interface
 	}
 	public void show()
 	{
-		fill(255,255,255);
-		ellipse((float)x+200, (float)y+200, 10, 10);
+		fill(255,255,0);
+		ellipse((float)x+200, (float)y+200, 8, 8);
 	}
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends OddballParticle //uses inheritance
 {
-	//your code here
+	JumboParticle()
+	{
+		x = x;
+		y = y;
+		speed = 0.001;
+		angle = (double)(Math.random()*6.5);
+	}
 }
 
